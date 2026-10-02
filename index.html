@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#0f380f">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Snake 3D">
+  <title>Snake 3D - Nokia Style</title>
+
+  <link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="shortcut icon" href="favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <link rel="manifest" href="site.webmanifest" />
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+  <!-- ===== মেনু স্ক্রিন ===== -->
+  <div id="menuScreen" class="screen">
+    <h1 class="logo">SNAKE 3D</h1>
+    <p class="subtitle">Nokia Classic · 3D Edition</p>
+    <button class="menu-btn" id="playBtn">▶ PLAY</button>
+    <button class="menu-btn" id="customBtn">🎨 CUSTOMIZE</button>
+    <button class="menu-btn" id="howBtn">❓ HOW TO PLAY</button>
+  </div>
+
+  <!-- ===== কাস্টমাইজ স্ক্রিন ===== -->
+  <div id="customScreen" class="screen hidden">
+    <div class="custom-header">
+      <h2 class="title">⚙️ CUSTOMIZE</h2>
+      <p class="custom-sub">নিজের মতো সাজাও</p>
+    </div>
+
+    <div class="section">
+      <label>🎨 থিম</label>
+      <p class="hint">ব্যাকগ্রাউন্ড ও পরিবেশ</p>
+      <div class="row" id="themeRow"></div>
+    </div>
+
+    <div class="section">
+      <label>🐍 সাপের রঙ</label>
+      <p class="hint">তোমার সাপের রঙ</p>
+      <div class="row" id="snakeColorRow"></div>
+    </div>
+
+    <div class="section">
+      <label>🍎 খাবারের রঙ</label>
+      <p class="hint">খাবারের রঙ বাছাই করো</p>
+      <div class="row" id="foodColorRow"></div>
+    </div>
+
+    <div class="section">
+      <label>⚡ কঠিনতা</label>
+      <p class="hint">গেম কত দ্রুত হবে</p>
+      <div class="row" id="diffRow"></div>
+    </div>
+
+    <button class="menu-btn play-btn" id="customPlayBtn">▶ PLAY NOW</button>
+  </div>
+
+  <!-- ===== গেম স্ক্রিন ===== -->
+  <div id="gameScreen" class="screen hidden">
+    <div class="hud">
+      <span>SCORE: <b id="score">000</b></span>
+      <span id="statusText" class="status-text hidden"></span>
+      <span>HI: <b id="hiscore">000</b></span>
+    </div>
+
+    <div class="game-frame">
+      <canvas id="game"></canvas>
+    </div>
+
+    <div class="controls">
+      <button class="dpad up" data-dir="up">▲</button>
+      <div class="row">
+        <button class="dpad left" data-dir="left">◀</button>
+        <button class="dpad center" id="pauseCenter">●</button>
+        <button class="dpad right" data-dir="right">▶</button>
+      </div>
+      <button class="dpad down" data-dir="down">▼</button>
+    </div>
+
+    <button class="settings-btn" id="gameSettingsBtn">⚙️ SETTINGS</button>
+  </div>
+
+  <!-- ===== ডেভলপার কার্ড ===== -->
+  <div class="developer">
+    <img src="dev.jpg" alt="Molla Mohammad Rifat Osama" class="dev-photo">
+    <div class="dev-info">
+      <p class="dev-name">Molla Mohammad Rifat Osama</p>
+      <p class="dev-role">🎮 Game Developer | 3D &amp; PWA Designer</p>
+      <p class="dev-msg">
+        Nokia ক্লাসিক সাপের গেমটি Three.js দিয়ে 3D ভার্সনে
+        রূপান্তর করেছি। সম্পূর্ণ অফলাইন, ব্রাউজারে চলার মতো,
+        অ্যাপ-এর মতো ইনস্টল করা যায়। ধন্যবাদ খেলার জন্য! ❤️
+      </p>
+      <div class="dev-tags">
+        <span>💻 HTML5</span>
+        <span>🎨 CSS3</span>
+        <span>⚡ JavaScript</span>
+        <span>🎮 Three.js</span>
+        <span>📱 PWA</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<button id="installBtn" class="install-btn hidden">📲 Install App</button>
+
+<!-- Three.js -->
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+
+<script src="script.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js')
+        .then(reg => console.log('✅ Service Worker:', reg.scope))
+        .catch(err => console.log('❌ SW error:', err));
+    });
+  }
+</script>
+
+</body>
+</html>
